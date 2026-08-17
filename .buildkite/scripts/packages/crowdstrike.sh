@@ -10,6 +10,11 @@ set -euo pipefail
 GEN_DIR="packages/crowdstrike/_dev/scripts/fdr-gen"
 OUT_DIR="packages/crowdstrike/data_stream/fdr/elasticsearch/ingest_pipeline"
 
+if [[ ! -d "${GEN_DIR}" ]]; then
+  echo "--- [crowdstrike] ${GEN_DIR} not found — skipping FDR pipeline check (backport branch)"
+  exit 0
+fi
+
 echo "--- [crowdstrike] Regenerate FDR ingest pipelines into a temp directory"
 ORIG_DIR="$(mktemp -d)"
 cp "${OUT_DIR}"/*.yml "${ORIG_DIR}/"

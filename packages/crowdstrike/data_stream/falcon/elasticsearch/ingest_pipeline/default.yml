@@ -277,6 +277,10 @@ processors:
       tag: pipeline_epp_detection_summary
       if: ctx.crowdstrike?.metadata?.eventType == "EppDetectionSummaryEvent"
   - pipeline:
+      name: '{{ IngestPipeline "hash_spreading_event" }}'
+      tag: pipeline_hash_spreading_event
+      if: ctx.crowdstrike?.metadata?.eventType == "HashSpreadingEvent"
+  - pipeline:
       name: '{{ IngestPipeline "mobile_detection_summary" }}'
       tag: pipeline_mobile_detection_summary
       if: ctx.crowdstrike?.metadata?.eventType == "MobileDetectionSummaryEvent"

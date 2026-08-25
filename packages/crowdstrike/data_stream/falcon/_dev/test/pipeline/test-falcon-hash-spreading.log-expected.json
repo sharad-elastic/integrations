@@ -1,0 +1,136 @@
+{
+    "expected": [
+        {
+            "@timestamp": "2025-06-26T10:50:17.000Z",
+            "crowdstrike": {
+                "event": {
+                    "AlertTime": "2025-06-26T10:48:20.000Z",
+                    "ExecutionType": "executable",
+                    "Sensors": [
+                        {
+                            "Filename": "suspicious_tool.exe",
+                            "HostnameField": "WORKSTATION-01",
+                            "LastWriteTime": 1750934800
+                        },
+                        {
+                            "Filename": "suspicious_tool.exe",
+                            "HostnameField": "WORKSTATION-02",
+                            "LastWriteTime": 1750934850
+                        }
+                    ]
+                },
+                "metadata": {
+                    "customerIDString": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "eventType": "HashSpreadingEvent",
+                    "offset": 891234,
+                    "version": "1.0"
+                }
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "action": "hash_spreading",
+                "category": [
+                    "malware"
+                ],
+                "created": "2025-06-26T10:50:17.037Z",
+                "kind": "alert",
+                "original": "{\"metadata\":{\"customerIDString\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"offset\":891234,\"eventType\":\"HashSpreadingEvent\",\"eventCreationTime\":1750935017037,\"version\":\"1.0\"},\"event\":{\"ExecutionType\":\"executable\",\"AlertTime\":1750934900,\"FileName\":\"suspicious_tool.exe\",\"SHA256String\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\"UTCTimestamp\":1750935017,\"Sensors\":[{\"HostnameField\":\"WORKSTATION-01\",\"Filename\":\"suspicious_tool.exe\",\"LastWriteTime\":1750934800},{\"HostnameField\":\"WORKSTATION-02\",\"Filename\":\"suspicious_tool.exe\",\"LastWriteTime\":1750934850}]}}",
+                "type": [
+                    "info"
+                ]
+            },
+            "file": {
+                "hash": {
+                    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                },
+                "name": "suspicious_tool.exe"
+            },
+            "observer": {
+                "product": "Falcon",
+                "vendor": "Crowdstrike"
+            },
+            "related": {
+                "hash": [
+                    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                ],
+                "hosts": [
+                    "WORKSTATION-01",
+                    "WORKSTATION-02"
+                ]
+            },
+            "tags": [
+                "preserve_original_event"
+            ],
+            "threat": {
+                "indicator": {
+                    "file": {
+                        "hash": {
+                            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                        }
+                    },
+                    "type": "file"
+                }
+            }
+        },
+        {
+            "@timestamp": "2025-06-26T10:51:57.000Z",
+            "crowdstrike": {
+                "event": {
+                    "AlertTime": "2025-06-26T10:50:00.000Z",
+                    "ExecutionType": "script"
+                },
+                "metadata": {
+                    "customerIDString": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                    "eventType": "HashSpreadingEvent",
+                    "offset": 891235,
+                    "version": "1.0"
+                }
+            },
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "action": "hash_spreading",
+                "category": [
+                    "malware"
+                ],
+                "created": "2025-06-26T10:51:57.037Z",
+                "kind": "alert",
+                "original": "{\"metadata\":{\"customerIDString\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"offset\":891235,\"eventType\":\"HashSpreadingEvent\",\"eventCreationTime\":1750935117037,\"version\":\"1.0\"},\"event\":{\"ExecutionType\":\"script\",\"AlertTime\":1750935000000,\"FileName\":\"payload.ps1\",\"SHA256String\":\"a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2\",\"UTCTimestamp\":1750935117}}",
+                "type": [
+                    "info"
+                ]
+            },
+            "file": {
+                "hash": {
+                    "sha256": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
+                },
+                "name": "payload.ps1"
+            },
+            "observer": {
+                "product": "Falcon",
+                "vendor": "Crowdstrike"
+            },
+            "related": {
+                "hash": [
+                    "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
+                ]
+            },
+            "tags": [
+                "preserve_original_event"
+            ],
+            "threat": {
+                "indicator": {
+                    "file": {
+                        "hash": {
+                            "sha256": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
+                        }
+                    },
+                    "type": "file"
+                }
+            }
+        }
+    ]
+}

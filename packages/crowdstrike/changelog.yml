@@ -4,6 +4,9 @@
     - description: Add support for APIActivityAuditEvent in the Falcon data stream.
       type: enhancement
       link: https://github.com/elastic/integrations/pull/1
+    - description: Add support for HashSpreadingEvent in the Falcon data stream.
+      type: enhancement
+      link: https://github.com/elastic/integrations/pull/1
 - version: "4.7.0"
   changes:
     - description: Mask AWS access_key_id policy variable as secret for FDR data stream.

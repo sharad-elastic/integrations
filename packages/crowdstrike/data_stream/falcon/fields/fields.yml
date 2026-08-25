@@ -96,6 +96,14 @@
           type: keyword
         - name: Timestamp
           type: keyword
+    - name: AlertTime
+      type: date
+      description: |
+        Timestamp when the hash spreading alert was triggered.
+    - name: ExecutionType
+      type: keyword
+      description: |
+        Execution type or category context for the hash spreading event.
     - name: FalconHostLink
       type: keyword
     - name: FileName
@@ -749,6 +757,23 @@
       description: |
         JSON objects containing additional information about the event.
       ignore_above: 8191
+    - name: Sensors
+      type: nested
+      description: |
+        Per-host details for hash spreading events.
+      fields:
+        - name: HostnameField
+          type: keyword
+          description: |
+            Host name where the spreading hash was observed.
+        - name: Filename
+          type: keyword
+          description: |
+            File name on the host where the hash was observed.
+        - name: LastWriteTime
+          type: date
+          description: |
+            Last write time of the file on the host.
     - name: SessionId
       type: keyword
       description: |

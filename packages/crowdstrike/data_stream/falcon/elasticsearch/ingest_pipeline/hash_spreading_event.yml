@@ -1,0 +1,111 @@
+---
+description: Pipeline for processing CrowdStrike HashSpreadingEvent logs.
+processors:
+  - set:
+      tag: set_event_kind
+      field: event.kind
+      value: alert
+  - append:
+      field: event.category
+      value: malware
+      tag: append_malware_category
+  - append:
+      field: event.type
+      value: info
+      tag: append_info_type
+  - set:
+      field: event.action
+      value: hash_spreading
+      tag: set_event_action
+  - set:
+      field: file.name
+      copy_from: crowdstrike.event.FileName
+      tag: set_file_name
+      ignore_empty_value: true
+  - set:
+      field: file.hash.sha256
+      copy_from: crowdstrike.event.SHA256String
+      tag: set_file_hash_sha256
+      ignore_empty_value: true
+  - set:
+      field: threat.indicator.type
+      value: file
+      tag: set_threat_indicator_type_file
+      if: ctx.crowdstrike?.event?.SHA256String != null
+  - set:
+      field: threat.indicator.file.hash.sha256
+      copy_from: crowdstrike.event.SHA256String
+      tag: set_threat_indicator_file_hash
+      ignore_empty_value: true
+  - date:
+      field: crowdstrike.event.AlertTime
+      target_field: crowdstrike.event.AlertTime
+      tag: date_alert_time_ms
+      formats:
+        - UNIX_MS
+      if: 'ctx.crowdstrike?.event?.AlertTime != null && String.valueOf(ctx.crowdstrike.event.AlertTime).length() >= 12'
+      on_failure:
+        - append:
+            tag: append_error_message_alert_time_ms
+            field: error.message
+            value: 'Processor {{{_ingest.on_failure_processor_type}}} with tag {{{_ingest.on_failure_processor_tag}}} in pipeline {{{_ingest.on_failure_pipeline}}} failed with message: {{{_ingest.on_failure_message}}}'
+  - date:
+      field: crowdstrike.event.AlertTime
+      target_field: crowdstrike.event.AlertTime
+      tag: date_alert_time
+      formats:
+        - UNIX
+      if: 'ctx.crowdstrike?.event?.AlertTime != null && String.valueOf(ctx.crowdstrike.event.AlertTime).length() <= 11'
+      on_failure:
+        - append:
+            tag: append_error_message_alert_time
+            field: error.message
+            value: 'Processor {{{_ingest.on_failure_processor_type}}} with tag {{{_ingest.on_failure_processor_tag}}} in pipeline {{{_ingest.on_failure_pipeline}}} failed with message: {{{_ingest.on_failure_message}}}'
+  - foreach:
+      field: crowdstrike.event.Sensors
+      tag: foreach_sensors_related_hosts
+      if: ctx.crowdstrike?.event?.Sensors instanceof List
+      ignore_failure: true
+      processor:
+        append:
+          field: related.hosts
+          tag: append_related_hosts_from_sensor
+          value: '{{{_ingest._value.HostnameField}}}'
+          allow_duplicates: false
+  - append:
+      field: related.hash
+      value: '{{{crowdstrike.event.SHA256String}}}'
+      allow_duplicates: false
+      tag: append_related_hash
+      if: ctx.crowdstrike?.event?.SHA256String != null && ctx.crowdstrike.event.SHA256String != ""
+  - remove:
+      field:
+        - crowdstrike.event.FileName
+        - crowdstrike.event.SHA256String
+      tag: remove_custom_duplicate_fields
+      ignore_missing: true
+  - set:
+      field: event.kind
+      tag: set_pipeline_error_into_event_kind
+      value: pipeline_error
+      if: ctx.error?.message != null
+  - append:
+      tag: append_preserve_original_event_on_error
+      field: tags
+      value: preserve_original_event
+      allow_duplicates: false
+      if: ctx.error?.message != null
+
+on_failure:
+  - append:
+      field: error.message
+      value: |-
+        Processor "{{{ _ingest.on_failure_processor_type }}}" with tag "{{{ _ingest.on_failure_processor_tag }}}" in pipeline "{{{ _ingest.on_failure_pipeline }}}" failed with message "{{{ _ingest.on_failure_message }}}"
+  - set:
+      field: event.kind
+      tag: set_pipeline_error_to_event_kind
+      value: pipeline_error
+  - append:
+      field: tags
+      value: preserve_original_event
+      allow_duplicates: false

@@ -94,6 +94,7 @@ The following event types are supported for CrowdStrike Event Streams (whether y
 
 - AutomatedLeadSummaryEvent
 - CustomerIOCEvent
+- HashSpreadingEvent
 - DataProtectionDetectionSummaryEvent
 - DetectionSummaryEvent
 - EppDetectionSummaryEvent

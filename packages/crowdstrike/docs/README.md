@@ -94,6 +94,7 @@ The following event types are supported for CrowdStrike Event Streams (whether y
 
 - AutomatedLeadSummaryEvent
 - CustomerIOCEvent
+- HashSpreadingEvent
 - DataProtectionDetectionSummaryEvent
 - DetectionSummaryEvent
 - EppDetectionSummaryEvent
@@ -1287,6 +1288,7 @@ An example event for `falcon` looks as following:
 | crowdstrike.event.AgentId |  | keyword |
 | crowdstrike.event.AgentIdString |  | keyword |
 | crowdstrike.event.AggregateId |  | keyword |
+| crowdstrike.event.AlertTime | Timestamp when the hash spreading alert was triggered. | date |
 | crowdstrike.event.AnodeIndicators.DataVolumeIncreasePercentage | Observed data volume as a multiple of the entity's baseline. | float |
 | crowdstrike.event.AnodeIndicators.Destination |  | keyword |
 | crowdstrike.event.AnodeIndicators.Detected |  | boolean |
@@ -1353,6 +1355,7 @@ An example event for `falcon` looks as following:
 | crowdstrike.event.ExecutionMetadata.ResultID |  | keyword |
 | crowdstrike.event.ExecutionMetadata.SearchWindowEnd |  | date |
 | crowdstrike.event.ExecutionMetadata.SearchWindowStart |  | date |
+| crowdstrike.event.ExecutionType | Execution type or category context for the hash spreading event. | keyword |
 | crowdstrike.event.FalconHostLink |  | keyword |
 | crowdstrike.event.FileCategoryCounts |  | nested |
 | crowdstrike.event.FileName |  | keyword |
@@ -1531,6 +1534,9 @@ An example event for `falcon` looks as following:
 | crowdstrike.event.ScheduledSearchUserUUID | UUID of the user that created the the associated scheduled search. | keyword |
 | crowdstrike.event.Score | The confidence score of the automated lead. Values range from 0 to 100. | long |
 | crowdstrike.event.SensorId | Unique ID associated with the Falcon sensor. | keyword |
+| crowdstrike.event.Sensors.Filename | File name on the host where the hash was observed. | keyword |
+| crowdstrike.event.Sensors.HostnameField | Host name where the spreading hash was observed. | keyword |
+| crowdstrike.event.Sensors.LastWriteTime | Last write time of the file on the host. | date |
 | crowdstrike.event.ServiceName | Description of which related service was involved in the event. | keyword |
 | crowdstrike.event.SessionId | Session ID of the remote response session. | keyword |
 | crowdstrike.event.Severity | The integer severity level using Crowdstrike scaling. | integer |

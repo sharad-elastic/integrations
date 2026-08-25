@@ -317,6 +317,10 @@ processors:
       tag: pipeline_auth_activity_audit
       if: ctx.crowdstrike?.metadata?.eventType == "AuthActivityAuditEvent"
   - pipeline:
+      name: '{{ IngestPipeline "api_activity_audit" }}'
+      tag: pipeline_api_activity_audit
+      if: ctx.crowdstrike?.metadata?.eventType == "APIActivityAuditEvent"
+  - pipeline:
       name: '{{ IngestPipeline "firewall_match" }}'
       tag: pipeline_firewall_match
       if: ctx.crowdstrike?.metadata?.eventType == "FirewallMatchEvent"

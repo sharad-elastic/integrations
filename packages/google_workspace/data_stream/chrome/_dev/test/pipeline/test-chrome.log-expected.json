@@ -668,6 +668,199 @@
                 "id": "222333444555666777",
                 "name": "jdoe"
             }
+        },
+        {
+            "@timestamp": "2026-09-28T16:27:55.037Z",
+            "device": {
+                "id": "DEVICE0001",
+                "model": {
+                    "name": "example-laptop"
+                }
+            },
+            "ecs": {
+                "version": "9.5.0"
+            },
+            "event": {
+                "action": "unsafe_site_visit",
+                "category": [
+                    "web"
+                ],
+                "id": "-1",
+                "kind": "alert",
+                "original": "{\"actor\":{\"callerType\":\"EXTERNAL_USER\",\"email\":\"user@example.com\"},\"events\":{\"name\":\"UNSAFE_SITE_VISIT\",\"parameters\":[{\"intValue\":\"1790612875037\",\"name\":\"TIMESTAMP\"},{\"name\":\"EVENT_REASON\",\"value\":\"EVENT_REASON_UNSPECIFIED\"},{\"name\":\"BROWSER_VERSION\",\"value\":\"153.0.8010.54\"},{\"name\":\"CLIENT_TYPE\",\"value\":\"CHROME_BROWSER\"},{\"name\":\"DEVICE_ID\",\"value\":\"DEVICE0001\"},{\"name\":\"DEVICE_NAME\",\"value\":\"example-laptop\"},{\"name\":\"DEVICE_PLATFORM\",\"value\":\"Mac OS X 26.7\"},{\"name\":\"DEVICE_USER\",\"value\":\"exampleuser\"},{\"name\":\"EVENT_RESULT\",\"value\":\"DETECTED\"},{\"name\":\"LOCAL_IP\",\"value\":\"\"},{\"name\":\"PROFILE_USER_NAME\",\"value\":\"user@example.com\"},{\"name\":\"REMOTE_IP\",\"value\":\"2001:db8::1\"},{\"name\":\"TRIGGER_USER\",\"value\":\"user@example.com\"},{\"name\":\"URL\",\"value\":\"https://phish.example.net/\"},{\"name\":\"USER_AGENT\",\"value\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36\"}],\"status\":{\"eventStatus\":\"SUCCEEDED\"},\"type\":\"UNSAFE_SITE_VISIT_TYPE\"},\"id\":{\"applicationName\":\"chrome\",\"customerId\":\"C00000000\",\"time\":\"2026-09-28T16:27:55.037Z\",\"uniqueQualifier\":\"-1\"},\"kind\":\"admin#reports#activity\"}",
+                "outcome": "success",
+                "provider": "chrome",
+                "reason": "EVENT_REASON_UNSPECIFIED",
+                "type": [
+                    "info"
+                ]
+            },
+            "google_workspace": {
+                "chrome": {
+                    "actor": {
+                        "caller_type": "EXTERNAL_USER",
+                        "email": "user@example.com"
+                    },
+                    "browser_version": "153.0.8010.54",
+                    "client_type": "CHROME_BROWSER",
+                    "device_id": "DEVICE0001",
+                    "device_name": "example-laptop",
+                    "device_platform": "Mac OS X 26.7",
+                    "device_user": "exampleuser",
+                    "event_reason": "EVENT_REASON_UNSPECIFIED",
+                    "event_result": "DETECTED",
+                    "id": {
+                        "application_name": "chrome",
+                        "customer_id": "C00000000",
+                        "time": "2026-09-28T16:27:55.037Z",
+                        "unique_qualifier": "-1"
+                    },
+                    "kind": "admin#reports#activity",
+                    "name": "UNSAFE_SITE_VISIT",
+                    "profile_user_name": "user@example.com",
+                    "remote_ip": [
+                        "2001:db8::1"
+                    ],
+                    "timestamp": "2026-09-28T16:27:55.037Z",
+                    "trigger_user": "user@example.com",
+                    "type": "UNSAFE_SITE_VISIT_TYPE",
+                    "url": "https://phish.example.net/",
+                    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+                }
+            },
+            "host": {
+                "os": {
+                    "full": "Mac OS X 26.7"
+                }
+            },
+            "observer": {
+                "product": "Chrome",
+                "vendor": "Google Workspace"
+            },
+            "organization": {
+                "id": "C00000000"
+            },
+            "related": {
+                "ip": [
+                    "2001:db8::1"
+                ],
+                "user": [
+                    "exampleuser",
+                    "user@example.com"
+                ]
+            },
+            "source": {
+                "user": {
+                    "domain": "example.com",
+                    "email": "user@example.com",
+                    "name": "user"
+                }
+            },
+            "tags": [
+                "preserve_duplicate_custom_fields"
+            ],
+            "url": {
+                "domain": "phish.example.net",
+                "original": "https://phish.example.net/",
+                "path": "/",
+                "scheme": "https"
+            },
+            "user": {
+                "email": "user@example.com",
+                "name": "exampleuser"
+            },
+            "user_agent": {
+                "device": {
+                    "name": "Mac"
+                },
+                "name": "Chrome",
+                "original": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+                "os": {
+                    "full": "Mac OS X 10.15.7",
+                    "name": "Mac OS X",
+                    "version": "10.15.7"
+                },
+                "version": "153.0.0.0"
+            }
+        },
+        {
+            "@timestamp": "2026-09-28T17:00:00.000Z",
+            "ecs": {
+                "version": "9.5.0"
+            },
+            "event": {
+                "action": "content_transfer",
+                "category": [
+                    "file"
+                ],
+                "id": "-2",
+                "kind": "event",
+                "original": "{\"actor\":{\"callerType\":\"USER\",\"email\":\"user2@example.com\",\"profileId\":\"100000000000000000001\"},\"events\":{\"name\":\"CONTENT_TRANSFER\",\"parameters\":[{\"intValue\":\"1790612999000\",\"name\":\"TIMESTAMP\"},{\"name\":\"CLIENT_TYPE\",\"value\":\"CHROME_BROWSER\"},{\"name\":\"EVENT_RESULT\",\"value\":\"BLOCKED\"},{\"name\":\"LOCAL_IP\",\"value\":\"192.168.1.10, , 203.0.113.8\"},{\"name\":\"REMOTE_IP\",\"value\":\"\"},{\"name\":\"PROFILE_USER_NAME\",\"value\":\"user2@example.com\"},{\"name\":\"TRIGGER_TYPE\",\"value\":\"FILE_UPLOAD\"}],\"type\":\"CONTENT_TRANSFER_TYPE\"},\"id\":{\"applicationName\":\"chrome\",\"customerId\":\"C00000001\",\"time\":\"2026-09-28T17:00:00.000Z\",\"uniqueQualifier\":\"-2\"},\"kind\":\"admin#reports#activity\"}",
+                "outcome": "failure",
+                "provider": "chrome",
+                "type": [
+                    "info"
+                ]
+            },
+            "google_workspace": {
+                "chrome": {
+                    "actor": {
+                        "caller_type": "USER",
+                        "email": "user2@example.com",
+                        "profile_id": "100000000000000000001"
+                    },
+                    "client_type": "CHROME_BROWSER",
+                    "event_result": "BLOCKED",
+                    "id": {
+                        "application_name": "chrome",
+                        "customer_id": "C00000001",
+                        "time": "2026-09-28T17:00:00.000Z",
+                        "unique_qualifier": "-2"
+                    },
+                    "kind": "admin#reports#activity",
+                    "local_ip": [
+                        "192.168.1.10",
+                        "203.0.113.8"
+                    ],
+                    "name": "CONTENT_TRANSFER",
+                    "profile_user_name": "user2@example.com",
+                    "timestamp": "2026-09-28T16:29:59.000Z",
+                    "trigger_type": "FILE_UPLOAD",
+                    "type": "CONTENT_TRANSFER_TYPE"
+                }
+            },
+            "observer": {
+                "product": "Chrome",
+                "vendor": "Google Workspace"
+            },
+            "organization": {
+                "id": "C00000001"
+            },
+            "related": {
+                "ip": [
+                    "192.168.1.10",
+                    "203.0.113.8"
+                ],
+                "user": [
+                    "user2@example.com",
+                    "100000000000000000001"
+                ]
+            },
+            "source": {
+                "user": {
+                    "domain": "example.com",
+                    "email": "user2@example.com",
+                    "id": "100000000000000000001",
+                    "name": "user2"
+                }
+            },
+            "tags": [
+                "preserve_duplicate_custom_fields"
+            ],
+            "user": {
+                "email": "user2@example.com",
+                "id": "100000000000000000001"
+            }
         }
     ]
 }
